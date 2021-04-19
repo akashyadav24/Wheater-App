@@ -38,13 +38,16 @@
            height: 60vh;
            border-radius: 0.5rem;
            box-shadow: 0 0.2rem 3rem rgba(0, 0, 0, 0.2);
-           background: rgb(109, 145, 252);
+             background-image: linear-gradient(rgb(247, 54, 237), rgb(171, 58, 247));
+           
            position: relative;
            overflow: hidden;
            transform: translate(0, 0, 0);
            min-width: 20rem;
            min-height: 35rem;
        }
+
+     
 
        .wave-one {
            opacity: 0.3;
@@ -150,7 +153,7 @@
            color: black;
            font-size: 1.2rem;
 
-       }
+    }
        .temp {
            margin-top: 2.5rem;
            text-align: center;
@@ -225,14 +228,15 @@
 </head>
 
 <body>
+    <div class="img"></div>
     <div class="box">
-
+        
         <div class="wave-one"></div>
         <div class="waveTwo"></div>
         <div class="waveThree"></div>
 
-
-        <div id="weathercon"><i class="fas fa-sun" style="color:#ffd341"></i> </div>
+        
+        <div id="weathercon"><i class="fas fa-sun" style="color:rgb(113, 206, 243)"></i> </div>
     
 
     <div info="info">
@@ -257,6 +261,9 @@
            else if(tempStatus == "Rainy"){
             weathercon.innerHTML ="<i class='fas fa-cloud-rain' style='color:#A9A9A9'></i>"
         }
+           else if(tempStatus == "Clear"){
+               weathercon.innerHTML = "<i class='fas fa-cloud-sun' style='color::rgb(113, 206, 243)'></i>"
+           }
         else{
             weathercon.innerHTML ="<i class='fas fa-cloud' style='color:#fff'></i>"
         }

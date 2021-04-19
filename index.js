@@ -16,10 +16,13 @@ const replaceVal = (tempVal, orgval) => {
     
 }
 
+
 const server = http.createServer((req, res) => {
+    var city= "Pune"
+    var url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=be11434ec4d029854c7b9e6a300dafc3`
     if (req.url == "/") {
-        request(
-            " http://api.openweathermap.org/data/2.5/weather?q=Pune&appid=be11434ec4d029854c7b9e6a300dafc3")
+        request(  
+           url)
 
         .on("data", (chunk) => {
             const objdata = JSON.parse(chunk);
@@ -38,3 +41,4 @@ const server = http.createServer((req, res) => {
 })
 
 server.listen(8000, "127.0.0.1");
+
