@@ -3,7 +3,10 @@ const fs = require("fs");
 const request = require('request');
 const { error } = require('console');
 
+
 const HomeFile = fs.readFileSync("home.html", "utf-8");
+
+let port = process.env.PORT || 5000
 
 const replaceVal = (tempVal, orgval) => {
     let temperature = tempVal.replace("{%tempval%}", (orgval.main.temp-273).toFixed(2));
@@ -21,14 +24,13 @@ const server = http.createServer((req, res) => {
     var city= "Pune"
     var url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=be11434ec4d029854c7b9e6a300dafc3`
     if (req.url == "/") {
-        request(  
-           url)
+        request(url)
 
         .on("data", (chunk) => {
             const objdata = JSON.parse(chunk);
             const arrData = [objdata];
-            var temp=((arrData[0].main.temp)-273);
-           // console.log(temp.toFixed(2));
+            var temp1=((arrData[0].main.temp)-273);
+           console.log(temp1.toFixed(2));
            const realTimeData =arrData.map((val) => replaceVal(HomeFile, val)).join("")
            res.write(realTimeData);
         })
@@ -40,5 +42,5 @@ const server = http.createServer((req, res) => {
 }
 })
 
-server.listen(8000, "127.0.0.1");
+server.listen(port, "127.0.0.1");
 
