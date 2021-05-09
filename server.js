@@ -4,7 +4,7 @@ const request = require('request');
 const { error } = require('console');
 
 
-const HomeFile = fs.readFileSync("home.html", "utf-8");
+const HomeFile = fs.readFileSync("index.html", "utf-8");
 
 let port = process.env.PORT || 5000
 
@@ -21,22 +21,22 @@ const replaceVal = (tempVal, orgval) => {
 
 
 const server = http.createServer((req, res) => {
-    var city= "Pune"
-    var url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=be11434ec4d029854c7b9e6a300dafc3`
+    var city= "Delhi"
+    var url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=439d72ba3d8a0a1fc8da79b62e3ef664`
     if (req.url == "/") {
         request(url)
 
         .on("data", (chunk) => {
             const objdata = JSON.parse(chunk);
             const arrData = [objdata];
+            console.log('arrdata : ' + arrData[0].main)
             var temp1=((arrData[0].main.temp)-273);
-           console.log(temp1.toFixed(2));
-           const realTimeData =arrData.map((val) => replaceVal(HomeFile, val)).join("")
-           res.write(realTimeData);
+            console.log(temp1.toFixed(2));
+            const realTimeData =arrData.map((val) => replaceVal(HomeFile, val)).join("")
+            res.write(realTimeData);
         })
         .on("end", function (err){
             if(err) return console.log("connection closed due to erroe",err);
-
             res.end();
         });
 }
