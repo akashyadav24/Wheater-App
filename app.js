@@ -6,7 +6,7 @@ const { error } = require('console');
 
 const HomeFile = fs.readFileSync("index.html", "utf-8");
 
-let port = process.env.PORT || 5000
+let port = process.env.PORT || 5000;
 
 const replaceVal = (tempVal, orgval) => {
     let temperature = tempVal.replace("{%tempval%}", (orgval.main.temp-273).toFixed(2));
@@ -42,5 +42,5 @@ const server = http.createServer((req, res) => {
 }
 })
 
-server.listen(port, "127.0.0.1");
+server.listen(port);
 
